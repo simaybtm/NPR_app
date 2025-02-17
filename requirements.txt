@@ -1,0 +1,14 @@
+branca==0.7.2
+folium==0.17.0
+geopandas==1.0.1
+numpy==2.2.3
+pandas==2.2.3
+plotly==5.23.0
+pyproj==3.6.1
+Requests==2.32.3
+scipy==1.15.2
+Shapely==2.0.7
+streamlit==1.37.0
+streamlit_extras==0.5.5
+streamlit_folium==0.24.0
+xarray==2025.1.2

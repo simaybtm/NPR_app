@@ -1,0 +1,4 @@
+/* styles.css */
+div[data-tooltip]::after {
+    font-size: 40px !important;  /* Pas de font size aan naar wens */
+}
