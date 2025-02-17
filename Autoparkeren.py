@@ -34,7 +34,7 @@ import threading
 from queue import Queue
 from pathlib import Path
 
-gpkg_path = 'geopackage_parkeren.gpkg'
+gpkg_path = "https://drive.google.com/file/d/1uTx4vMVtcVzZdCgg4qGnkiMdO-Rm44Uo/view?usp=sharing"
 
 
 # Lock voor toegang tot de GeoPackage
