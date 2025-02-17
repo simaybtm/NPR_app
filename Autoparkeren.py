@@ -12,6 +12,7 @@ import geopandas as gpd
 import folium
 from streamlit_folium import st_folium
 import sqlite3
+import os
 
 import streamlit as st
 from streamlit_extras.mandatory_date_range import date_range_picker
@@ -34,8 +35,30 @@ import threading
 from queue import Queue
 from pathlib import Path
 
-gpkg_path = "https://drive.google.com/file/d/1uTx4vMVtcVzZdCgg4qGnkiMdO-Rm44Uo/view?usp=sharing"
+# Google Drive file ID (Extracted from the shared link)
+file_id = "1uTx4vMVtcVzZdCgg4qGnkiMdO-Rm44Uo"
+gpkg_path = "geopackage_parkeren.gpkg"
 
+# Function to download file
+def download_gpkg_from_drive(file_id, destination):
+    url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    response = requests.get(url, stream=True)
+    
+    if response.status_code == 200:
+        with open(destination, "wb") as file:
+            for chunk in response.iter_content(chunk_size=1024):
+                if chunk:
+                    file.write(chunk)
+        print("✅ Download completed!")
+    else:
+        print("❌ Failed to download file.")
+
+# Download only if the file does not exist
+if not os.path.exists(gpkg_path):
+    download_gpkg_from_drive(file_id, gpkg_path)
+
+# Load the GeoPackage
+kaartdata = gpd.read_file(gpkg_path, layer="statische_autoparkeerdata")
 
 # Lock voor toegang tot de GeoPackage
 db_lock = threading.Lock()
